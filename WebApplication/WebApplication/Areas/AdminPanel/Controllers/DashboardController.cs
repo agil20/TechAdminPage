@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace WebApplication.Areas.AdminPanel.Controllers
 {
@@ -8,7 +9,7 @@ namespace WebApplication.Areas.AdminPanel.Controllers
 
         public IActionResult Index()
         {
-
+            
             return View();
         }
     }
