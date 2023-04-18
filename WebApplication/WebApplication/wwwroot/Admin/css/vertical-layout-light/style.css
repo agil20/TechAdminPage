@@ -116,6 +116,21 @@
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
+.mytable {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    .mytable td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    .mytable tr:nth-child(even) {
+        background-color: #dddddd;
+    }
 @-moz-keyframes flash {
   0% {
     opacity: 1;

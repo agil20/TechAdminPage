@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "p0BnpLIDgIyhsvl5IxqYz0vHm2JX/dN/WaSzSZOOr+CDmX/7Go1thb3971klX7U3UAVTpPki/73RMZN/PtBsoA==",
+  "dgSpecHash": "2Zj7EieafwaPL2QJicjCKUnZ4+OFtu/JcREg8xCxG+axQJYe33SlXTTqcXHfsDidvd5/KoUKrlWWu5iXJFaHUw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\asus\\Desktop\\AdminPanelTecho\\WebApplication\\WebApplication\\WebApplication.csproj",
+  "projectFilePath": "C:\\Users\\asus\\Desktop\\XalchaAdmin\\TechAdminPage\\WebApplication\\WebApplication\\WebApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
