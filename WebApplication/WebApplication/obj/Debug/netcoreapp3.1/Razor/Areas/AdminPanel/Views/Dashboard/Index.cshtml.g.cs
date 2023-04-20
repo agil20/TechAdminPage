@@ -19,8 +19,15 @@ using WebApplication.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\asus\Desktop\XalchaAdmin\TechAdminPage\WebApplication\WebApplication\Areas\AdminPanel\_ViewImports.cshtml"
+using WebApplication.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5c20b5a50613cc84ebf79d0fa694037b67b6ec5c", @"/Areas/AdminPanel/Views/Dashboard/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e9461a220fed12430cdcb935f6980e9bdfbfc34f", @"/Areas/AdminPanel/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"587379b4ae4b31cb58ccb94e6d94183de0c775f5", @"/Areas/AdminPanel/_ViewImports.cshtml")]
     #nullable restore
     public class Areas_AdminPanel_Views_Dashboard_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable

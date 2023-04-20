@@ -3,7 +3,8 @@
     public class PrecentVM
     {
         public string Irad { get; set; }
-        public int  Reqem { get; set; }
-        public int Faiz { get; set; }
+  
+        public int ReqemEnd { get; set; }
+        public decimal FaizEnd { get; set; }
     }
 }

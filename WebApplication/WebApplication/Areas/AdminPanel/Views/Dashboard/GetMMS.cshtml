@@ -1,4 +1,4 @@
-﻿
+﻿@model List<PrecentVM>
 @{
     ViewData["Title"] = "GetMMS";
     Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
@@ -18,25 +18,25 @@
                 <div class="card-body">
               <p class="card-title">Fabrik İrad Göstərisi</p>
 
-             <table class="mytable">
+                         <table class="mytable">
   <tr>
-    <th> </th>
-
+    <th>Irad</th>
+    <th>Rəqəm</th>
+    <th>Faiz</th>
   </tr>
+
+@foreach (var item in Model)
+{
+          <tr>
+    <td>@item.Irad</td>
+    <td>@item.ReqemEnd</td>
+    <td>@item.FaizEnd%</td>
+  </tr>
+
+}
+
  
-
-  
-  
-  <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Yoshi Tannamuri</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Giovanni Rovelli</td>
-    <td>Italy</td>
-  </tr>
+ 
 </table>
                 </div>
               </div>

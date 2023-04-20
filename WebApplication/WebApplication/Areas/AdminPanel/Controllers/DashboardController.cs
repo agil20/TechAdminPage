@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApplication.Models;
@@ -29,48 +30,69 @@ namespace WebApplication.Areas.AdminPanel.Controllers
 
         public async Task<IActionResult> GetMMS()
         {
-            DateTime beginDateTime = new DateTime(2019, 4, 18).Date; // örnek başlangıç tarihi
-            DateTime endDateTime = new DateTime(2023, 4, 19).Date; // örnek bitiş tarihi
+            DateTime beginDateTime = new DateTime(2023, 3, 22);
+            DateTime endDateTime = new DateTime(2023, 4, 20);
+            PrecentVM precent = new PrecentVM();
 
-            List<string> data = new List<string>();
-            string connectionString = "Server=202.207.14.2;Database=PakXalcaWeb;uid=test_aqil;pwd=Read123;MultipleActiveResultSets=true; Integrated Security=false";
+            string connectionString = "Server=202.207.14.2;Database=PakXalcaWeb;uid=test_aqil;pwd=Read123;";
+            SqlConnection connection = new SqlConnection(connectionString);
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                connection.Open();
+                string Begindate = "'2023-03-22'";
+                string Enddate = "'2023-04-20'";
+                string procedureName = "dbo.spFabrik_Irad_Gostericisi";
+                string query = $"exec dbo.spFabrik_Irad_Gostericisi '{beginDateTime}','{endDateTime}'";
+                SqlCommand command = new SqlCommand(query, connection);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                List<PrecentVM> precentList = new List<PrecentVM>();
+
+                while (reader.Read())
                 {
-                    connection.Open();
+                    PrecentVM tempPrecent = new PrecentVM();
+                    tempPrecent.Irad = reader.GetString(0);
+         
 
-                    string procedureName = "spFabrik_Irad_Gostericisi";
-                    SqlCommand command = new SqlCommand(procedureName, connection);
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@begin", beginDateTime);
-                    command.Parameters.AddWithValue("@end", endDateTime);
+                    tempPrecent.FaizEnd = (reader.GetDecimal(2) + reader.GetDecimal(4)) / 2;
+                    tempPrecent.FaizEnd = Math.Round(tempPrecent.FaizEnd, 2);
 
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            StringBuilder row = new StringBuilder();
-                            for (int i = 0; i < reader.FieldCount; i++)
-                            {
-                                row.Append(reader.GetValue(i).ToString() + "\t");
-                            }
-                            data.Add(row.ToString());
-                        }
-                    }
+                    tempPrecent.ReqemEnd = reader.GetInt32(1) + reader.GetInt32(3);
+
+                    precentList.Add(tempPrecent);
                 }
+
+                reader.Close();
+
+                return View(precentList);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+            finally
+            {
+                connection.Close();
+            }
 
-            return View(data);
+            return View();
         }
+        //public async Task<IActionResult> GetallAdmin(int i)
+        //{
+        //    var data=_context.Users.Where(r=>r.IsAdmin==true).ToList();
+        //    List<string> datas = new List<string>();
+        //    foreach (var item in data)
+        //    {
+        //        datas.Add(item.Email);
+        //    }
+        //    Console.WriteLine(datas);
+        //    return View();
+        
+        //}
 
-
-
+     
 
 
     }
