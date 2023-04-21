@@ -28,10 +28,11 @@ namespace WebApplication.Areas.AdminPanel.Controllers
             return View();
         }
 
-        public async Task<IActionResult> GetMMS()
+        public async Task<IActionResult> GetMMS(DateTime? startDate, DateTime? endDate)
         {
-            DateTime beginDateTime = new DateTime(2023, 3, 22);
-            DateTime endDateTime = new DateTime(2023, 4, 20);
+            DateTime beginDateTime = startDate ?? DateTime.Today;
+            DateTime endDateTime = endDate ?? DateTime.Today;
+
             PrecentVM precent = new PrecentVM();
 
             string connectionString = "Server=202.207.14.2;Database=PakXalcaWeb;uid=test_aqil;pwd=Read123;";
@@ -40,8 +41,7 @@ namespace WebApplication.Areas.AdminPanel.Controllers
             try
             {
                 connection.Open();
-                string Begindate = "'2023-03-22'";
-                string Enddate = "'2023-04-20'";
+           
                 string procedureName = "dbo.spFabrik_Irad_Gostericisi";
                 string query = $"exec dbo.spFabrik_Irad_Gostericisi '{beginDateTime}','{endDateTime}'";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -65,6 +65,7 @@ namespace WebApplication.Areas.AdminPanel.Controllers
                 }
 
                 reader.Close();
+                precentList = precentList.OrderByDescending(p => p.ReqemEnd).ToList();
 
                 return View(precentList);
             }

@@ -4,15 +4,26 @@
     Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
 }
 
+	
      <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-          
+<form method="get" action="/AdminPanel/dashboard/GetMMS">
+    <label for="start-date">Başlangıç Tarihi:</label>
+    <input type="date" id="start-date" name="startDate" />
+
+    <label for="end-date">Bitiş Tarihi:</label>
+    <input type="date" id="end-date" name="endDate" />
+
+    <button type="submit">Filtrele</button>
+</form>
           </div>
           <div class="row">
          
           </div>
           <div class="row">
+          
+
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
