@@ -1,4 +1,5 @@
-(function($) {
+
+(function ($) {
   'use strict';
   var editor = ace.edit("aceExample");
   editor.setTheme("ace/theme/chaos");

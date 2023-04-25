@@ -30,7 +30,7 @@ namespace WebApplication.Areas.AdminPanel.Controllers
 
         public async Task<IActionResult> GetMMS(DateTime? startDate, DateTime? endDate)
         {
-            DateTime beginDateTime = startDate ?? DateTime.Today;
+            DateTime beginDateTime = startDate ?? DateTime.Now.AddDays(-7);
             DateTime endDateTime = endDate ?? DateTime.Today;
 
             PrecentVM precent = new PrecentVM();
