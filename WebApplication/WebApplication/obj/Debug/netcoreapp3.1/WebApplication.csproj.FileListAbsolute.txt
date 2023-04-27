@@ -278,3 +278,4 @@ C:\Users\asus\Desktop\XalchaAdmin\TechAdminPage\WebApplication\WebApplication\ob
 C:\Users\asus\Desktop\XalchaAdmin\TechAdminPage\WebApplication\WebApplication\obj\Debug\netcoreapp3.1\WebApplication.genruntimeconfig.cache
 C:\Users\asus\Desktop\XalchaAdmin\TechAdminPage\WebApplication\WebApplication\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Dashboard\GetMMS.cshtml.g.cs
 C:\Users\asus\Desktop\XalchaAdmin\TechAdminPage\WebApplication\WebApplication\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Dashboard\GetallAdmin.cshtml.g.cs
+C:\Users\asus\Desktop\XalchaAdmin\TechAdminPage\WebApplication\WebApplication\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Dashboard\Calls.cshtml.g.cs

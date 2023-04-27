@@ -27,6 +27,32 @@ namespace WebApplication.Areas.AdminPanel.Controllers
             
             return View();
         }
+        public async Task<IActionResult> Calls(DateTime? endTime, DateTime? startTime)
+        {
+            DateTime beginDateTime = startTime ?? DateTime.Now.AddDays(-10);
+            DateTime endDateTime = endTime ?? DateTime.Today;
+
+            var orders = _context.Orders.Where( c=>c.CreatedDate< endDateTime && c.CreatedDate> beginDateTime).ToList();
+            var users = _context.Users.ToList();
+
+            var model = from ord in orders
+                        join usr in users on ord.CreatedBy equals usr.Id
+                        where ord.OrderStatus != 2 // Öz götürme durumu hariç tutuldu
+                        group new { ord, usr } by usr.FullName into g
+                        select new OrderStatusReportViewModel
+                        {
+                            OperatorName = g.Key,
+                            OrderHasBeenTaken = g.Count(x => x.ord.OrderStatus == 0),
+                            TakeSelf = g.Count(x => x.ord.OrderStatus == 2),
+                            WasInterested = g.Count(x => x.ord.OrderStatus == 1),
+                            Reject = g.Count(x => x.ord.OrderStatus == 4),
+                            ReturnBack = g.Count(x => x.ord.OrderStatus == 3)
+                        };
+
+            return View(model.ToList());
+        }
+
+
 
         public async Task<IActionResult> GetMMS(DateTime? startDate, DateTime? endDate)
         {
@@ -80,18 +106,6 @@ namespace WebApplication.Areas.AdminPanel.Controllers
 
             return View();
         }
-        //public async Task<IActionResult> GetallAdmin(int i)
-        //{
-        //    var data=_context.Users.Where(r=>r.IsAdmin==true).ToList();
-        //    List<string> datas = new List<string>();
-        //    foreach (var item in data)
-        //    {
-        //        datas.Add(item.Email);
-        //    }
-        //    Console.WriteLine(datas);
-        //    return View();
-        
-        //}
 
      
 
