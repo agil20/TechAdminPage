@@ -27,7 +27,7 @@ namespace WebApplication.Areas.AdminPanel.Controllers
             
             return View();
         }
-        public async Task<IActionResult> Calls(DateTime? endTime, DateTime? startTime, List<Users> UserId)
+        public async Task<IActionResult> Calls(DateTime? endTime, DateTime? startTime)
         {
             DateTime beginDateTime = startTime ?? DateTime.Now.AddDays(-10);
             DateTime endDateTime = endTime ?? DateTime.Today;
@@ -35,17 +35,8 @@ namespace WebApplication.Areas.AdminPanel.Controllers
 
             var orders = _context.Orders.Where(c => c.CreatedDate < endDateTime && c.CreatedDate > beginDateTime).ToList();
             var users = _context.Users.ToList();
-            if (UserId.Count !=0)
-            { 
 
-                foreach (var item in UserId)
-                {
-                     users = _context.Users.Where(u => u.Id == item.Id).ToList();
 
-                }
-            }
-            
-         
 
 
             var model = from ord in orders
@@ -53,18 +44,23 @@ namespace WebApplication.Areas.AdminPanel.Controllers
                         where ord.OrderStatus != 2 // Öz götürme durumu hariç tutuldu
                         group new { ord, usr } by usr.FullName into g
                         select new OrderStatusReportViewModel
-                        {
+                        { 
+                          
+                            OperatorId = g.First().usr.Id,
                             OperatorName = g.Key,
                             OrderHasBeenTaken = g.Count(x => x.ord.OrderStatus == 0),
                             TakeSelf = g.Count(x => x.ord.OrderStatus == 2),
                             WasInterested = g.Count(x => x.ord.OrderStatus == 1),
                             Reject = g.Count(x => x.ord.OrderStatus == 4),
-                            ReturnBack = g.Count(x => x.ord.OrderStatus == 3)
-                        };
-           
-       
+                            ReturnBack = g.Count(x => x.ord.OrderStatus == 3),
+                       
+        };
 
-            return View(model.OrderByDescending(O=>O.OrderHasBeenTaken).ToList());
+           
+            model = model.OrderByDescending(O => O.OrderHasBeenTaken).ToList();
+           
+
+            return View(model);
         }
 
 

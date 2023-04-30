@@ -2,6 +2,7 @@
 {
     public class OrderStatusReportViewModel
     {
+        public int OperatorId { get; set; }
         public string OperatorName { get; set; }
         public int OrderHasBeenTaken { get; set; }
         public int TakeSelf { get; set; }
