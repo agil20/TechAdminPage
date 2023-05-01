@@ -16,23 +16,18 @@
 
     <button type="submit">Filtrele</button>
 </form>
- <form onsubmit="showOperators()">
-    <input type="text" name="search">
-    <button type="submit">Ara</button>
-  </form>
 
-<div id="operator-select" style="display:none">
- <select name="operator" multiple>
-@foreach (var item in Model)
-{
-        <option value="@item.OperatorId">@item.OperatorName</option>
-}
-  
-  </select>
-</div>
+
           </div>
           <div class="row">
-         
+   <select id="operator-select" onchange="showOperatorName()">
+  <option value="">Operatör seçin</option>
+  @foreach (var item in Model)
+  {
+    <option value="@item.OperatorId">@item.OperatorName</option>
+  }
+</select>
+
           </div>
           <div class="row">
           
@@ -78,20 +73,19 @@
              </div>
 
        @section Scripts
-       {    
-           <script>
-  function showOperators() {
-    event.preventDefault();
-    var operatorSelect = document.getElementById("operator-select");
-    operatorSelect.style.display = "block";
-    return true;
-  }
+       {    <script>
+           console.log("sjdh")
+     const selectElement = document.getElementById('operator-select');
 
-  function selectOperator() {
-    var searchInput = document.getElementById("search-input");
-    var operatorSelect = document.getElementsByName("operator")[0];
-    searchInput.value = operatorSelect.value;
-  }
+
+     selectElement.addEventListener('change', (event) => {
+    const selectedValue = selectElement.value; // get selected value
+    fetch('/dashboard/calls?userid=' + selectedValue)
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+  });
+
 
 </script>
        }
