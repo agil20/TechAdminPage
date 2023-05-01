@@ -27,16 +27,33 @@ namespace WebApplication.Areas.AdminPanel.Controllers
             
             return View();
         }
-        public async Task<IActionResult> Calls(DateTime? endTime, DateTime? startTime)
+        public async Task<IActionResult> Calls(DateTime? endTime, DateTime? startTime,int[] userId)
         {
             DateTime beginDateTime = startTime ?? DateTime.Now.AddDays(-10);
             DateTime endDateTime = endTime ?? DateTime.Today;
             OrderStatusReportViewModel orderStatusReportViewModel = new OrderStatusReportViewModel();
 
             var orders = _context.Orders.Where(c => c.CreatedDate < endDateTime && c.CreatedDate > beginDateTime).ToList();
-            var users = _context.Users.ToList();
 
+            List<Users> users = new List<Users>();
+            if (userId.Length!=0)
+            {
+                foreach (var item in userId)
+                {
+                    var user = _context.Users.FirstOrDefault(u => u.Id == item);
+                    if (user != null)
+                    {
+                        users.Add(user);
+                    }
 
+                }
+            }
+            else
+            {
+                users = _context.Users.ToList();
+            }
+          
+          
 
 
             var model = from ord in orders

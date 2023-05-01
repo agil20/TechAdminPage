@@ -13,6 +13,31 @@
 
     <label for="end-date">Bitiş Tarihi:</label>
     <input type="date" id="end-date" name="endTime" />
+           <table class="mytable">
+  <tr>
+    <th >Operatorun adı</th>
+ 
+              
+  </tr>
+
+@foreach (var item in Model)
+{
+          <tr  >
+
+    <td > 
+        <label>
+      <input  type="checkbox" name="userId" value="@item.OperatorId" >@item.OperatorName 
+    </label>
+    </td>
+
+  </tr>
+
+}
+
+ 
+ 
+</table>
+    
 
     <button type="submit">Filtrele</button>
 </form>
@@ -20,13 +45,7 @@
 
           </div>
           <div class="row">
-   <select id="operator-select" onchange="showOperatorName()">
-  <option value="">Operatör seçin</option>
-  @foreach (var item in Model)
-  {
-    <option value="@item.OperatorId">@item.OperatorName</option>
-  }
-</select>
+ 
 
           </div>
           <div class="row">
@@ -74,19 +93,10 @@
 
        @section Scripts
        {    <script>
-           console.log("sjdh")
-     const selectElement = document.getElementById('operator-select');
 
-
-     selectElement.addEventListener('change', (event) => {
-    const selectedValue = selectElement.value; // get selected value
-    fetch('/dashboard/calls?userid=' + selectedValue)
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
-  });
-
+  
 
 </script>
+
        }
        
