@@ -7,47 +7,34 @@
   <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-<form method="get" action="/AdminPanel/dashboard/Calls">
+     <form method="get" action="/AdminPanel/dashboard/Calls">
     <label for="start-date">Başlangıç Tarihi:</label>
     <input type="date" id="start-date" name="startTime" />
 
     <label for="end-date">Bitiş Tarihi:</label>
     <input type="date" id="end-date" name="endTime" />
-           <table class="mytable">
-  <tr>
-    <th >Operatorun adı</th>
- 
+          
+       <div class="custom-combobox-container">
+            <div class="custom-combobox" onclick="showOptions(this)">
+                <input type="text" id="inputCheckbox" readonly>
+                <img src="~/Admin/images/arrow.png">
+            </div>
+            <div class="options-container" id="divOptions" onmouseleave="hideOptions(this)">
+              @foreach (var item in Model)
+                    {
+                          <label for="one"> <input type="checkbox" name="userId" id="@item.OperatorId" value="@item.OperatorId"> @item.OperatorName </label>
+                    }
               
-  </tr>
-
-@foreach (var item in Model)
-{
-          <tr  >
-
-    <td > 
-        <label>
-      <input  type="checkbox" name="userId" value="@item.OperatorId" >@item.OperatorName 
-    </label>
-    </td>
-
-  </tr>
-
-}
-
- 
- 
-</table>
-    
-
-    <button type="submit">Filtrele</button>
+           
+        </div>
+    </div>
+     <button type="submit">Filtrele</button>
 </form>
-
-
-          </div>
-          <div class="row">
- 
+  
+     
 
           </div>
+       
           <div class="row">
           
 
@@ -92,11 +79,29 @@
              </div>
 
        @section Scripts
-       {    <script>
+       {     <script>
+        function showOptions(e) {
+            let divOptions = document.getElementById("divOptions");
+            if (divOptions.style.display == "none" || divOptions.style.display == "") {
+                divOptions.style.display = "inline-block";
+            } else {
+                divOptions.style.display = "none";
+            }
+        }
+        function clickMe(e) {
+            console.log('click me');
+            e.stopPropagation();
+        }
+        function hideOptions(e) {
+            let divOptions = document.getElementById("divOptions");
 
-  
-
-</script>
+            if (divOptions.contains(e.target)) {
+                divOptions.style.display = "inline-block";
+            } else {
+                divOptions.style.display = "none";
+            }
+        }
+    </script>
 
        }
        

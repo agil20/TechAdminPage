@@ -1,6 +1,72 @@
-.myinput 
-{
-    display:none
+.element.atyle {
+    margin-left: 800px;
+    bottom: 42px;
+}
+
+.custom-combobox-container {
+    position: relative;
+    width: 30%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-left:600px;
+   bottom:60px
+    
+}
+
+.custom-combobox {
+    width: 100%;
+    height:20%;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(199, 199, 199);
+    padding: 10px;
+}
+
+    .custom-combobox input[type="text"] {
+        width: 95%;
+        border: none;
+        outline: none;
+        background: none;
+        cursor: pointer;
+      
+    }
+
+.options-container {
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    border: 1px solid rgb(204, 204, 204);
+    border-top: none;
+    display: none;
+    height: 150px;
+    overflow-y: scroll;
+}
+
+    .options-container label {
+        display: block;
+        cursor: pointer;
+        padding: 5px;
+        margin-top: 5px;
+        user-select: none;
+    }
+
+        .options-container label:hover {
+            background: rgb(201, 201, 201);
+        }
+
+    .options-container::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    .options-container::-webkit-scrollbar-thumb {
+        background-color: rgb(100, 100, 100);
+    }
+
+#opname {
+    cursor:pointer;
+    display:
+        
 }
 
 

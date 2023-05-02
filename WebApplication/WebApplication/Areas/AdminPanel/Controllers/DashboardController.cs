@@ -54,15 +54,15 @@ namespace WebApplication.Areas.AdminPanel.Controllers
             }
           
           
-
+           
 
             var model = from ord in orders
                         join usr in users on ord.CreatedBy equals usr.Id
-                        where ord.OrderStatus != 2 // Öz götürme durumu hariç tutuldu
+                        where ord.OrderStatus != 2 
                         group new { ord, usr } by usr.FullName into g
                         select new OrderStatusReportViewModel
                         { 
-                          
+                         
                             OperatorId = g.First().usr.Id,
                             OperatorName = g.Key,
                             OrderHasBeenTaken = g.Count(x => x.ord.OrderStatus == 0),
@@ -72,7 +72,7 @@ namespace WebApplication.Areas.AdminPanel.Controllers
                             ReturnBack = g.Count(x => x.ord.OrderStatus == 3),
                        
         };
-
+            ViewBag.Users = _context.Users.ToList();
            
             model = model.OrderByDescending(O => O.OrderHasBeenTaken).ToList();
            
@@ -135,8 +135,11 @@ namespace WebApplication.Areas.AdminPanel.Controllers
             return View();
         }
 
-     
-
+        public async Task<IActionResult> GardenOneSale(DateTime?starDate,DateTime dateTime, int[] userId, int[] productId)
+        {
+            return View();
+        }
+        
 
     }
 }

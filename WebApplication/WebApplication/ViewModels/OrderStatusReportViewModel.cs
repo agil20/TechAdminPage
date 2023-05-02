@@ -9,5 +9,6 @@
         public int WasInterested { get; set; }
         public int Reject { get; set; }
         public int ReturnBack { get; set; }
+        public string AllOperator { get; set; }
     }
 }
