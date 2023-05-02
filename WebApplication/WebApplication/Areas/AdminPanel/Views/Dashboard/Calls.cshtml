@@ -20,11 +20,11 @@
                 <img src="~/Admin/images/arrow.png">
             </div>
             <div class="options-container" id="divOptions" onmouseleave="hideOptions(this)">
-              @foreach (var item in Model)
-                    {
-                          <label for="one"> <input type="checkbox" name="userId" id="@item.OperatorId" value="@item.OperatorId"> @item.OperatorName </label>
-                    }
-              
+  @foreach (object item in ViewBag.Users)
+{
+    <label for="one"> <input type="checkbox" name="userId" id="@((int)item.GetType().GetProperty("Id").GetValue(item))" value="@((int)item.GetType().GetProperty("Id").GetValue(item))"> @((string)item.GetType().GetProperty("Name").GetValue(item)) </label>
+}
+
            
         </div>
     </div>

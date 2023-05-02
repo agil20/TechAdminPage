@@ -72,8 +72,12 @@ namespace WebApplication.Areas.AdminPanel.Controllers
                             ReturnBack = g.Count(x => x.ord.OrderStatus == 3),
                        
         };
-            ViewBag.Users = _context.Users.ToList();
-           
+            List<Users> usersw = _context.Users.ToList();
+            ViewBag.Users = usersw.Select(x => new { Id = x.Id, Name = x.FullName }).ToList<object>();
+
+
+
+
             model = model.OrderByDescending(O => O.OrderHasBeenTaken).ToList();
            
 
