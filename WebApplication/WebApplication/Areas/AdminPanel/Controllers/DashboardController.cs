@@ -52,8 +52,14 @@ namespace WebApplication.Areas.AdminPanel.Controllers
             {
                 users = _context.Users.ToList();
             }
-          
-          
+
+            //var models = _context.Orders.Include(o => o.OperationStatus).Where(o => o.OperationStatus != 2).Select
+            //         (x=>new OrderStatusReportViewModel
+            //         { 
+                     
+            //         }
+
+            //    );
            
 
             var model = from ord in orders
@@ -72,7 +78,7 @@ namespace WebApplication.Areas.AdminPanel.Controllers
                             ReturnBack = g.Count(x => x.ord.OrderStatus == 3),
                        
         };
-            List<Users> usersw = _context.Users.ToList();
+            List<Users> usersw = _context.Users.AsNoTracking().ToList();
             ViewBag.Users = usersw.Select(x => new { Id = x.Id, Name = x.FullName }).ToList<object>();
 
 
@@ -139,11 +145,15 @@ namespace WebApplication.Areas.AdminPanel.Controllers
             return View();
         }
 
-        public async Task<IActionResult> GardenOneSale(DateTime?starDate,DateTime dateTime, int[] userId, int[] productId)
+        public async Task<IActionResult> GardenOneSale(DateTime? startDate,DateTime? dateTime, int[]? userId, int[] ?productId)
         {
             return View();
         }
-        
+        public async Task<IActionResult> Debet(DateTime ? startDate , DateTime? dateTime , int Id)
+        {
+            return View();
+        }
+
 
     }
 }

@@ -1,3 +1,36 @@
+
+.custom-combobox-containerdebet {
+    position: relative;
+    width: 40%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 600px;
+    bottom: 30px
+}
+
+.custom-combobox-containerproduct {
+    position: relative;
+    width: 25%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 900px;
+    bottom: 80px
+}
+
+
+.custom-combobox-containers {
+    position: relative;
+    width: 25%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 550px;
+    bottom: 40px
+}
+
+
 .element.atyle {
     margin-left: 800px;
     bottom: 42px;
