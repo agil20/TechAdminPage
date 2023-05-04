@@ -1,0 +1,193 @@
+﻿
+@{
+    ViewData["Title"] = "MoneyMovement";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">  
+
+    <div class="row">
+
+          <form method="get" action="/AdminPanel/dashboard/Calls">
+    <label for="start-date">Başlangıç Tarihi:</label>
+    <input type="date" id="start-date" name="startTime" />
+
+    <label for="end-date">Bitiş Tarihi:</label>
+    <input type="date" id="end-date" name="endTime" />
+          
+       <div class="custom-combobox-containermoney">
+            <div class="custom-combobox" onclick="showOptions(this)">
+                <input type="text" id="inputCheckbox" readonly>
+                <img src="~/Admin/images/arrow.png">
+            </div>
+            <div class="options-container" id="divOptions" onmouseleave="hideOptions(this)">
+
+    <label for="one"> <input type="checkbox" name="userId" > fggf  </label>
+     <label for="one"> <input type="checkbox" name="userId" > fggf  </label>
+ <label for="one"> <input type="checkbox" name="userId" > fggf  </label>
+ <label for="one"> <input type="checkbox" name="userId" > fggf  </label>
+
+
+
+           
+        </div>
+    </div>
+     <button type="submit">Filtrele</button>
+</form>
+  
+
+    </div>
+ 
+     <div class="row ">
+
+      <div class="col-3 myrow">
+          <div class="mymove">dsd</div>
+          </div>
+                <div class="col-3 myrow">
+          <div class="mymove">dsd</div>
+          </div>
+                <div class="col-3 myrow">
+          <div class="mymove">dsd</div>
+          </div>
+                <div class="col-3 myrow">
+          <div class="mymove">dsd</div>
+          </div>
+      
+   
+
+
+  </div>
+
+   <div class="row">
+          
+
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+              <p class="card-title"> Debitor hesabati</p>
+
+                         <table class="mytable">
+  <tr>
+    <th>Müştəri</th>
+    <th>Əvvala Tarix</th>
+    <th>Satış</th>
+  
+     <th>Ödəniş</th>
+      <th>Son Qalıq</th>
+     <th>Malın Qitməti</th>
+ 
+
+              
+  </tr>
+
+       <tr>
+    <td>fghf</td>
+     <td>fghf</td>
+     <td>fghf</td>
+     <td>fghf</td>
+     <td>fghf</td>
+     <td>fghf</td>
+
+  </tr>
+
+
+
+ 
+ 
+</table>
+                </div>
+              </div>
+            </div>
+         
+            </div>
+   <div class="row">
+          
+
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+              <p class="card-title">Kreditor hesabatı</p>
+
+                         <table class="mytable">
+  <tr>
+    <th>Müştəri</th>
+    <th>Əvvala Tarix</th>
+    <th>Satış</th>
+  
+     <th>Ödəniş</th>
+      <th>Son Qalıq</th>
+     <th>Malın Qitməti</th>
+ 
+
+              
+  </tr>
+
+       <tr>
+    <td>fghf</td>
+     <td>fghf</td>
+     <td>fghf</td>
+     <td>fghf</td>
+     <td>fghf</td>
+     <td>fghf</td>
+
+  </tr>
+
+
+
+ 
+ 
+</table>
+                </div>
+              </div>
+            </div>
+         
+            </div>
+</div>
+ @section Scripts
+       {     <script>
+        function showOptions(e) {
+            let divOptions = document.getElementById("divOptions");
+            if (divOptions.style.display == "none" || divOptions.style.display == "") {
+                divOptions.style.display = "inline-block";
+            } else {
+                divOptions.style.display = "none";
+            }
+        }
+        function clickMe(e) {
+            console.log('click me');
+            e.stopPropagation();
+        }
+        function hideOptions(e) {
+            let divOptions = document.getElementById("divOptions");
+
+            if (divOptions.contains(e.target)) {
+                divOptions.style.display = "inline-block";
+            } else {
+                divOptions.style.display = "none";
+            }
+        }
+
+         function showOptionsProduct(e) {
+            let divOptions = document.getElementById("divOptionsProduct");
+            if (divOptions.style.display == "none" || divOptions.style.display == "") {
+                divOptions.style.display = "inline-block";
+            } else {
+                divOptions.style.display = "none";
+            }
+        }
+        function clickMe(e) {
+            console.log('click me');
+            e.stopPropagation();
+        }
+        function hideOptionsProduct(e) {
+            let divOptions = document.getElementById("divOptionsProduct");
+
+            if (divOptions.contains(e.target)) {
+                divOptions.style.display = "inline-block";
+            } else {
+                divOptions.style.display = "none";
+            }
+        }
+    </script>
+
+       }

@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using WebApplication.Models;
 using WebApplication.ViewModels;
@@ -145,15 +144,51 @@ namespace WebApplication.Areas.AdminPanel.Controllers
             return View();
         }
 
-        public async Task<IActionResult> GardenOneSale(DateTime? startDate,DateTime? dateTime, int[]? userId, int[] ?productId)
+        public async Task<IActionResult> GardenOneSale(DateTime? startDate, DateTime? endDate, int[]? userId, int[]? productId)
         {
-            return View();
-        }
-        public async Task<IActionResult> Debet(DateTime ? startDate , DateTime? dateTime , int Id)
-        {
-            return View();
-        }
+            DateTime beginDateTime = startDate ?? DateTime.Now.AddDays(-7);
+            DateTime endDateTime = endDate ?? DateTime.Today;
 
+
+            List<SaleVM> salesVMList = new List<SaleVM>();
+          
+            string connectionString = "Server=202.207.14.2;Database=PakXalcaWeb;uid=test_aqil;pwd=Read123;";
+            string query = $"DECLARE @begin date, @end date, @operators [dbo].[tvpInt], @meyve [dbo].[tvpInt]; " +
+                             $"SET @begin = '{beginDateTime}'; " +
+                             $"SET @end = '{endDateTime}'; " +
+                             //"insert into @operators  values('211')"+
+                             "EXEC spGetSatisReportMaster @begin, @end, @operators, @meyve;";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    SaleVM sale = new SaleVM();
+                    sale.Musteri=reader.GetString(0);
+                    sale.XalisCeki=reader.GetDouble(1);
+                    sale.MalinQiymeti = reader.GetString(2);
+                    sale.Mebleg=reader.GetDecimal(3);
+                    sale.Endirim = reader.GetDouble(4);
+                    sale.YekunMebleg = reader.GetDecimal(5);
+                    sale.ToplamDebitorBorc=reader.GetDecimal(6);
+                    salesVMList.Add(sale);
+
+                }
+
+                return View(salesVMList);
+            }
+        }
+        public async Task<IActionResult> Debet(DateTime ? startDate , DateTime? dateTime , int? Id)
+        {
+            return View();
+        }
+        public async Task<IActionResult> MoneyMovement(DateTime? startDate, DateTime? dateTime, int[]? Id)
+        {
+            return View();
+        }
 
     }
 }

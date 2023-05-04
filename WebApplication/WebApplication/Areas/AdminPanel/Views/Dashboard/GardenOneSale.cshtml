@@ -1,4 +1,4 @@
-﻿
+﻿@model List<SaleVM>
 @{
     ViewData["Title"] = "GardenOneSale";
     Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
@@ -21,7 +21,10 @@
             </div>
             <div class="options-container" id="divOptions" onmouseleave="hideOptions(this)">
 
-    <label for="one"> <input type="checkbox" name="userId"> sddf  </label>
+  @foreach (var item in Model)
+ {
+       <label for="one"> <input type="checkbox" name="userId"> @item.Meyve  </label>
+ }
 
 
            
@@ -33,8 +36,11 @@
                 <img src="~/Admin/images/arrow.png">
             </div>
             <div class="options-container" id="divOptionsProduct" onmouseleave="hideOptionsProduct(this)">
-
-    <label for="one"> <input type="checkbox" name="userId"> sddf  </label>
+@foreach (var item in Model)
+{
+    <label for="one"> <input type="checkbox" name="userId">@item.Musteri  </label>
+    
+}
 
 
         </div>
@@ -69,10 +75,22 @@
               
   </tr>
 
-       <tr>
-    <td>fghf</td>
+      @foreach (var item in Model)
+     {
+          <tr>
+  <td> @item.Musteri</td>
+  <td> </td>
+  <td></td>
+  <td></td>
+  <td>@item.XalisCeki</td>
+  <td>@item.MalinQiymeti</td>
+  <td>@item.Mebleg</td>
+  <td>@item.Endirim</td>
+  <td>@item.YekunMebleg</td>
+  <td>@item.ToplamDebitorBorc</td>
 
-  </tr>
+      </tr>
+     }
 
 
 
