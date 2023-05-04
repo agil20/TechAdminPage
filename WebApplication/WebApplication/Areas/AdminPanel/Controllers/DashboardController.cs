@@ -158,28 +158,54 @@ namespace WebApplication.Areas.AdminPanel.Controllers
                              $"SET @end = '{endDateTime}'; " +
                              //"insert into @operators  values('211')"+
                              "EXEC spGetSatisReportMaster @begin, @end, @operators, @meyve;";
+            string query2 = $"DECLARE @begin date, @end date, @operators [dbo].[tvpInt], @meyve [dbo].[tvpInt]; " +
+                             $"SET @begin = '{beginDateTime}'; " +
+                             $"SET @end = '{endDateTime}'; " +
+                             //"insert into @operators  values('211')"+
+                             "EXEC spGetSatisReport @begin, @end, @operators, @meyve;";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
                 SqlDataReader reader = command.ExecuteReader();
+
                 while (reader.Read())
                 {
                     SaleVM sale = new SaleVM();
-                    sale.Musteri=reader.GetString(0);
-                    sale.XalisCeki=reader.GetDouble(1);
+                    sale.Musteri = reader.GetString(0);
+                    sale.XalisCeki = reader.GetDouble(1);
                     sale.MalinQiymeti = reader.GetString(2);
-                    sale.Mebleg=reader.GetDecimal(3);
+                    sale.Mebleg = reader.GetDecimal(3);
                     sale.Endirim = reader.GetDouble(4);
                     sale.YekunMebleg = reader.GetDecimal(5);
-                    sale.ToplamDebitorBorc=reader.GetDecimal(6);
+                    sale.ToplamDebitorBorc = reader.GetDecimal(6);
                     salesVMList.Add(sale);
-
                 }
+
+                reader.Close(); // birinci SqlDataReader nesnesini kapatın
+                
+                SqlCommand command2 = new SqlCommand(query2, connection);
+                SqlDataReader reader2 = command2.ExecuteReader();
+
+                while (reader2.Read())
+                {
+                    SaleVM sale = salesVMList.FirstOrDefault(s => s.Musteri == reader2.GetString(0));
+
+                    if (sale != null)
+                    {
+                        sale.Date = reader2.GetString(1);
+                        sale.Meyve = reader2.GetString(2);
+                    }
+                }
+
+                reader2.Close(); // ikinci SqlDataReader nesnesini kapatın
 
                 return View(salesVMList);
             }
+
+
+
         }
         public async Task<IActionResult> Debet(DateTime ? startDate , DateTime? dateTime , int? Id)
         {

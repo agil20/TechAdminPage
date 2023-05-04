@@ -5,7 +5,7 @@ namespace WebApplication.ViewModels
     public class SaleVM
     {
         public string Musteri { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public string Meyve { get; set; }
         public string MeyveninKalibri { get; set; }
         public double XalisCeki { get; set; }
