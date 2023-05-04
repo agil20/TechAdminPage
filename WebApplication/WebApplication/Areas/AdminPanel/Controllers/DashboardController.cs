@@ -163,6 +163,7 @@ namespace WebApplication.Areas.AdminPanel.Controllers
                              $"SET @end = '{endDateTime}'; " +
                              //"insert into @operators  values('211')"+
                              "EXEC spGetSatisReport @begin, @end, @operators, @meyve;";
+            string query3 = $"select *from dbo.LG_002_ITEMS";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -201,6 +202,20 @@ namespace WebApplication.Areas.AdminPanel.Controllers
 
                 reader2.Close(); // ikinci SqlDataReader nesnesini kapatın
 
+
+                SqlCommand command3 = new SqlCommand(query3, connection);
+                SqlDataReader reader3 = command3.ExecuteReader();
+                List<SaleVM>saleVMsAll=new List<SaleVM>();
+                while (reader3.Read())
+                {
+                    Console.WriteLine(reader3.GetString(3));
+                    //SaleVM sale = new SaleVM();
+                    //sale.AllMeyve = reader3.GetString(4);
+                    //salesVMList.Add(sale);
+                 
+                }
+
+                ViewBag.All=saleVMsAll;
                 return View(salesVMList);
             }
 

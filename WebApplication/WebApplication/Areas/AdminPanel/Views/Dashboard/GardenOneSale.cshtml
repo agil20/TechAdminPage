@@ -21,7 +21,7 @@
             </div>
             <div class="options-container" id="divOptions" onmouseleave="hideOptions(this)">
 
-  @foreach (var item in Model)
+  @foreach (var item in  ViewBag.All)
  {
        <label for="one"> <input type="checkbox" name="userId"> @item.Meyve  </label>
  }

@@ -4,6 +4,7 @@ namespace WebApplication.ViewModels
 {
     public class SaleVM
     {
+        public string AllMeyve { get; set; }
         public string Musteri { get; set; }
         public string Date { get; set; }
         public string Meyve { get; set; }
